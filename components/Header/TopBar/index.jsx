@@ -1,5 +1,29 @@
+import { Container, Grid, Image, Input } from 'semantic-ui-react'
+import Link from 'next/link'
+
 export default function TopBar() {
   return (
-    <div>Topbar</div>
+    <div className="top-bar">
+      <Container>
+        <Grid className="top-bar">
+            <Grid.Column width={8} className="top-bar__left">
+              <Logo />
+            </Grid.Column>
+            <Grid.Column width={8} className="top-bar__right">
+              <p>Search</p>
+            </Grid.Column>
+        </Grid>
+      </Container>
+    </div>
+  )
+}
+
+function Logo() {
+  return (
+    <Link href="/">
+      <a>
+        <Image src="/logo.png" alt="Next Games" />
+      </a>
+    </Link>
   )
 }
