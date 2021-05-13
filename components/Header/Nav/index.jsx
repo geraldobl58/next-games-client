@@ -2,11 +2,14 @@ import { useState } from 'react'
 import { Container, Menu, Grid, Icon, Label } from 'semantic-ui-react'
 import Link from 'next/link'
 import BasicModal from '../../Modal/BasicModal'
+import Auth from '../../Auth'
 
 export default function Nav() {
   const [showModal, setShowModal] = useState(false)
+  const [titleModal, setTitleModal] = useState('Faça seu login')
 
   const onShowModal = () => setShowModal(true)
+  const onCloseModal = () => setShowModal(false)
 
   return (
     <div className="nav">
@@ -23,10 +26,10 @@ export default function Nav() {
       <BasicModal 
         show={showModal} 
         setShow={setShowModal} 
-        title="Login" 
+        title={titleModal} 
         size="small"
       >
-        Modal
+        <Auth onCloseModal={onCloseModal} setTitleModal={setTitleModal} />
       </BasicModal>
     </div>
   )
