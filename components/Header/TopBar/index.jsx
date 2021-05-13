@@ -10,7 +10,7 @@ export default function TopBar() {
               <Logo />
             </Grid.Column>
             <Grid.Column width={8} className="top-bar__right">
-              <p>Search</p>
+              <Search />
             </Grid.Column>
         </Grid>
       </Container>
@@ -25,5 +25,11 @@ function Logo() {
         <Image src="/logo.png" alt="Next Games" />
       </a>
     </Link>
+  )
+}
+
+function Search() {
+  return (
+    <Input id="search-game" icon={{ name: "search" }} />
   )
 }

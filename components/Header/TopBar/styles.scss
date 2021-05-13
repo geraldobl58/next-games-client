@@ -24,4 +24,27 @@
       }
     }
   }
+
+  &__right {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+
+    .ui.input {
+      input {
+        background: transparent !important;
+        border: 2px solid $primary !important;
+        width: 220px;
+        transition: width 0.3s;
+  
+        &:focus {
+          width: 350px;
+        }
+      }
+
+      i {
+        color: $primary;
+      }
+    }
+  }
 }
