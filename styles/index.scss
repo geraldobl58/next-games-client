@@ -2,4 +2,8 @@
 @import './colors.scss';
 
 // layouts
-@import '../layouts/BasicLayout/styles.scss'
+@import '../layouts/BasicLayout/styles.scss';
+
+// components
+@import '../components/Header/styles.scss';
+@import '../components/Header/TopBar/styles.scss';
