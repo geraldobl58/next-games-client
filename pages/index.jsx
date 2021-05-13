@@ -1,10 +1,9 @@
-import { Button } from 'semantic-ui-react'
+import BasicLayout from "../layouts/BasicLayout"
 
 export default function Home() {
   return (
-    <div className="homepage">
-      <Button primary>Primary</Button>
-    <Button secondary>Secondary</Button>
-    </div>
+    <BasicLayout>
+      <h1>Nextjs</h1>
+    </BasicLayout>
   )
 }
