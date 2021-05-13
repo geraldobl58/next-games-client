@@ -18,9 +18,10 @@
     img {
       height: 90px;
       transition: all 0.5s;
+      transform: translateX(-45px);
 
       &:hover {
-        transform: translateX(-45px);
+        transform: translateX(0px);
       }
     }
   }

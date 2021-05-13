@@ -1,0 +1,49 @@
+.nav {
+  background: $background-dark;
+  margin-top: 20px;
+
+  .ui.grid {
+    margin: 0;
+  }
+
+  &__left,
+  &__right {
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center;
+
+    .ui.menu {
+      border: 0;
+      box-shadow: none;
+      height: 100%;
+      background: transparent;
+
+      .icon {
+        margin-right: 10px !important;
+        color: $primary;
+      }
+
+      .item {
+        color: $font-light;
+        text-transform: uppercase;
+        font-size: 14px;
+        padding: 30px 0;
+        margin-right: 50px;
+
+        &:hover {
+          color: $font-light;
+          background: $background-dark-absolute;
+        }
+      }
+
+      &.m-0 i {
+        margin: 0 !important;
+      }
+    }
+  }
+
+  &__right {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
