@@ -1,7 +1,13 @@
+import { useState } from 'react'
 import { Container, Menu, Grid, Icon, Label } from 'semantic-ui-react'
 import Link from 'next/link'
+import BasicModal from '../../Modal/BasicModal'
 
 export default function Nav() {
+  const [showModal, setShowModal] = useState(false)
+
+  const onShowModal = () => setShowModal(true)
+
   return (
     <div className="nav">
       <Container>
@@ -10,10 +16,18 @@ export default function Nav() {
             <NavPlatforms />
           </Grid.Column>
           <Grid.Column width={10} className="nav__right">
-            <MenuOptions />
+            <MenuOptions onShowModal={onShowModal} />
           </Grid.Column>
         </Grid>
       </Container>
+      <BasicModal 
+        show={showModal} 
+        setShow={setShowModal} 
+        title="Login" 
+        size="small"
+      >
+        Modal
+      </BasicModal>
     </div>
   )
 }
@@ -34,10 +48,10 @@ function NavPlatforms() {
   )
 }
 
-function MenuOptions() {
+function MenuOptions({ onShowModal }) {
   return (
     <Menu>
-      <Menu.Item>
+      <Menu.Item onClick={onShowModal}>
         <Icon name="user outline" />
         Minha Conta
       </Menu.Item>

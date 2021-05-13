@@ -1,0 +1,26 @@
+.basic-modal {
+
+  .header {
+    background: $primary !important;
+    border-bottom: none !important;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+
+    span, i {
+      color: $font-dark;
+    }
+
+    i {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin: 0;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
