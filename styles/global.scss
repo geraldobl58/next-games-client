@@ -1,5 +1,22 @@
 @import './index.scss';
 
-body {
-  background: #333;
+.ui.form {
+  .ui.input {
+    input {
+      font-size: 16px;
+      margin-bottom: 10px;
+      border: 2px solid $primary;
+    }
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .ui.button.submit {
+    color: $font-dark;
+    background: $primary;
+  }
 }
