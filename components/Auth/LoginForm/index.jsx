@@ -11,8 +11,7 @@ import { loginApi } from '../../../api/user'
 export default function LoginForm({ showRegisterForm, onCloseModal }) {
   const [loading, setLoading] = useState(false)
 
-  const auth = useAuth()
-  console.log(auth)
+  const { login } = useAuth()
 
   const formik = useFormik({
     initialValues: initialValues(),
@@ -21,7 +20,7 @@ export default function LoginForm({ showRegisterForm, onCloseModal }) {
       setLoading(true)
       const response = await loginApi(formData)
       if (response?.jwt) {
-        console.log(response)
+        login(response.jwt)
         onCloseModal();
       } else {
         toast.error('Whoops: Email/Senha inválido!')
