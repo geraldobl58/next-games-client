@@ -65,7 +65,9 @@ export default function RegisterForm({ showLoginForm }) {
       <div className="actions">
         <Button 
           type="button" 
-          basic>
+          basic
+          onClick={showLoginForm}
+        >
             Faça seu login
         </Button>
         <Button 
