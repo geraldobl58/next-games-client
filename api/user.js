@@ -1,4 +1,5 @@
 import { BASE_URL } from '../utils/constatnts'
+import { authFetch } from '../utils/fetch'
 
 export async function registerApi(formData) {
   try {
@@ -60,6 +61,19 @@ export async function resetPasswordApi(email) {
 
     return result
 
+  }catch(err) {
+    console.log(err)
+    return null
+  }
+}
+
+export async function getMeApi(logout) {
+  try {
+    const url = `${BASE_URL}/users/me`
+    const result = await authFetch(url, null, logout)
+
+    return result ? result : null
+    
   }catch(err) {
     console.log(err)
     return null
