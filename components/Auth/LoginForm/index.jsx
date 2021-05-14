@@ -4,13 +4,24 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { toast } from 'react-toastify'
 
-export default function LoginForm({ showRegisterForm }) {
-  
+import { loginApi } from '../../../api/user'
+
+export default function LoginForm({ showRegisterForm, onCloseModal }) {
+  const [loading, setLoading] = useState(false)
+
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: Yup.object(validationSchema()),
-    onSubmit: (formData) => {
-      console.log(formData)
+    onSubmit: async (formData) => {
+      setLoading(true)
+      const response = await loginApi(formData)
+      if (response?.jwt) {
+        console.log(response)
+        onCloseModal();
+      } else {
+        toast.error('Whoops: Email/Senha inválido!')
+      }
+      setLoading(false)
     }
   })
 
@@ -42,6 +53,7 @@ export default function LoginForm({ showRegisterForm }) {
           <Button
           type="submit"
           className="submit"
+          loading={loading}
         >
           Entrar
         </Button>
