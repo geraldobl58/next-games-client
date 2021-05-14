@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 
 import useAuth from '../../../hooks/useAuth'
 
-import { loginApi } from '../../../api/user'
+import { loginApi, resetPasswordApi } from '../../../api/user'
 
 export default function LoginForm({ showRegisterForm, onCloseModal }) {
   const [loading, setLoading] = useState(false)
@@ -29,6 +29,19 @@ export default function LoginForm({ showRegisterForm, onCloseModal }) {
       setLoading(false)
     }
   })
+
+  const resetPassword = () => {
+    formik.setErrors({})
+    
+    const validateEmail = Yup.string().email().required()
+
+    if (!validateEmail.isValidSync(formik.values.identifier)) {
+      formik.setErrors({ identifier: true })
+    } else {
+      resetPasswordApi(formik.values.identifier)
+    }
+
+  }
 
   return (
     <Form className="login-form" onSubmit={formik.handleSubmit}>
@@ -64,6 +77,7 @@ export default function LoginForm({ showRegisterForm, onCloseModal }) {
         </Button>
         <Button
           type="button"
+          onClick={resetPassword}
         >
           Esqueceu sua senha?
         </Button>
