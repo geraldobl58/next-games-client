@@ -2,15 +2,26 @@ import { useState } from 'react'
 import { Form, Button } from 'semantic-ui-react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { toast } from 'react-toastify'
 
 import { registerApi } from '../../../api/user'
 
 export default function RegisterForm({ showLoginForm }) {
+  const [loading, setLoading] = useState(false)
+  
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: Yup.object(validationSchema()),
-    onSubmit: (formData) => {
-      registerApi(formData)
+    onSubmit: async (formData) => {
+      setLoading(true)
+        const response = await registerApi(formData)
+        if (response?.jwt) {
+          toast.success('Parabéns: Usuário cadastrado com sucesso!')
+          showLoginForm()
+        } else {
+          toast.error('Whoops: Houve um erro ao cadastrar o usuário!')
+        }
+      setLoading(false)
     }
   })
 
@@ -52,8 +63,17 @@ export default function RegisterForm({ showLoginForm }) {
         error={formik.errors.password}  
       />
       <div className="actions">
-        <Button type="button" basic>Faça seu login</Button>
-        <Button type="submit" className="submit">Cadastrar</Button>
+        <Button 
+          type="button" 
+          basic>
+            Faça seu login
+        </Button>
+        <Button 
+          type="submit" 
+          className="submit" 
+          loading={loading}>
+            Cadastrar
+        </Button>
       </div>
     </Form>
   )
