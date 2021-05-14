@@ -3,10 +3,13 @@ import { Container, Menu, Grid, Icon, Label } from 'semantic-ui-react'
 import Link from 'next/link'
 import BasicModal from '../../Modal/BasicModal'
 import Auth from '../../Auth'
+import useAuth from '../../../hooks/useAuth'
 
 export default function Nav() {
   const [showModal, setShowModal] = useState(false)
   const [titleModal, setTitleModal] = useState('Faça seu login')
+
+  const { logout, auth } = useAuth()
 
   const onShowModal = () => setShowModal(true)
   const onCloseModal = () => setShowModal(false)
@@ -19,7 +22,10 @@ export default function Nav() {
             <NavPlatforms />
           </Grid.Column>
           <Grid.Column width={10} className="nav__right">
-            <MenuOptions onShowModal={onShowModal} />
+            {auth 
+              ? <button onClick={logout}>Logout</button>
+              : <MenuOptions onShowModal={onShowModal} />
+            }
           </Grid.Column>
         </Grid>
       </Container>
