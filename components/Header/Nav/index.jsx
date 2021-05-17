@@ -89,7 +89,7 @@ function MenuOptions({ onShowModal, user, logout }) {
           <Link href='/account'>
             <Menu.Item as="a">
               <Icon name="user outline" />
-              Minha Conta
+              Minha Conta ({user.firstname})
             </Menu.Item>
           </Link>
           <Link href='/cart'>

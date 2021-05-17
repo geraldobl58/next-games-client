@@ -79,3 +79,66 @@ export async function getMeApi(logout) {
     return null
   }
 }
+
+export async function updateNameApi(idUser, data, logout) {
+  try {
+    const url = `${BASE_URL}/users/${idUser}`
+    const params = {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+
+    const result = await authFetch(url, params, logout)
+
+    return result ? result : null
+    
+  }catch(err) {
+    console.log(err)
+    return null
+  }
+}
+
+export async function updateEmailApi(idUser, email, logout) {
+  try {
+    const url = `${BASE_URL}/users/${idUser}`
+    const params = {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email })
+    };
+
+    const result = await authFetch(url, params, logout)
+
+    return result ? result : null
+    
+  }catch(err) {
+    console.log(err)
+    return null
+  }
+}
+
+export async function updatePasswordApi(idUser, password, logout) {
+  try {
+    const url  = `${BASE_URL}/users/${idUser}`
+    const params = {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ password })
+    };
+
+    const result = await authFetch(url, params, logout)
+
+    return result ? result : null
+    
+  }catch(err) {
+    console.log(err)
+    return null
+  }
+} 

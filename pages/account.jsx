@@ -6,10 +6,13 @@ import useAuth from '../hooks/useAuth'
 import { getMeApi } from '../api/user'
 
 import BasicLayout from '../layouts/BasicLayout'
+import ChangeNameForm from '../components/Account/ChangeNameForm'
+import ChangeEmailForm from '../components/Account/ChangeEmailForm'
+import ChangePasswordForm from '../components/Account/ChangePasswordForm'
 
 export default function Account() {
   const [user, setUser] = useState(undefined)
-  const { auth, logout } = useAuth()
+  const { auth, logout, setReloadUser } = useAuth()
   const router = useRouter()
 
   useEffect(() => {
@@ -28,16 +31,35 @@ export default function Account() {
 
   return (
     <BasicLayout className="account">
-      <Configuration />
+      <Configuration 
+        user={user} 
+        logout={logout} 
+        setReloadUser={setReloadUser} 
+      />
     </BasicLayout>
   )
 }
 
-function Configuration() {
+function Configuration({ user, logout, setReloadUser }) {
   return (
     <div className="account__configuration">
       <div className="title">Configuração</div> 
-      <div className="data">Formulário</div> 
+        <div className="data">
+          <ChangeNameForm 
+            user={user} 
+            logout={logout} 
+            setReloadUser={setReloadUser} 
+          />
+          <ChangeEmailForm 
+            user={user} 
+            logout={logout} 
+            setReloadUser={setReloadUser} 
+          />
+          <ChangePasswordForm 
+            user={user} 
+            logout={logout} 
+          />
+        </div> 
     </div>
   )
 }
