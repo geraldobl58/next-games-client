@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react'
-import { Container, Menu, Grid, Icon, Label } from 'semantic-ui-react'
+import { Container, Menu, Grid, Icon } from 'semantic-ui-react'
 import Link from 'next/link'
+import { map } from 'lodash'
 import BasicModal from '../../Modal/BasicModal'
 import Auth from '../../Auth'
 import useAuth from '../../../hooks/useAuth'
 import { getMeApi } from '../../../api/user'
+import { getPlatformApi } from '../../../api/platform'
 
 export default function Nav() {
+  const [platforms, setPlatforms] = useState([])
   const [showModal, setShowModal] = useState(false)
   const [titleModal, setTitleModal] = useState('Faça seu login')
   const [user, setUser] = useState(undefined)
@@ -20,6 +23,13 @@ export default function Nav() {
     })()
   }, [auth])
 
+  useEffect(() => {
+    (async () => {
+      const response = await getPlatformApi()
+      setPlatforms(response || [])
+    })()
+  }, [])
+
   const onShowModal = () => setShowModal(true)
   const onCloseModal = () => setShowModal(false)
 
@@ -28,7 +38,7 @@ export default function Nav() {
       <Container>
         <Grid>
           <Grid.Column width={6} className="nav__left">
-            <NavPlatforms />
+            <NavPlatforms platforms={platforms} />
           </Grid.Column>
           <Grid.Column width={10} className="nav__right">
             {user !== undefined && (
@@ -53,18 +63,14 @@ export default function Nav() {
   )
 }
 
-function NavPlatforms() {
+function NavPlatforms({ platforms }) {
   return (
     <Menu>
-      <Link href="/playstation">
-        <Menu.Item as="a">Playstation</Menu.Item>
-      </Link>
-      <Link href="/xbox">
-        <Menu.Item as="a">Xbox</Menu.Item>
-      </Link>
-      <Link href="/switch">
-        <Menu.Item as="a">Switch</Menu.Item>
-      </Link>
+     {map(platforms, (platform) => (
+        <Link href={`/games/${platform.url}`} key={platform._id}>
+          <Menu.Item as="a" name={platform.url}>{platform.title}</Menu.Item>
+        </Link>
+     ))}
     </Menu>
   )
 }
