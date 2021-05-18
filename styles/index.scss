@@ -2,8 +2,9 @@
 @import './colors.scss';
 
 // pages
-@import '../pages/account.scss';
 @import '../pages/index.scss';
+@import '../pages/account.scss';
+@import '../pages/games/styles.scss';
 
 // layouts
 @import '../layouts/BasicLayout/styles.scss';
