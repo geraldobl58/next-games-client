@@ -1,5 +1,7 @@
 import { Tab } from 'semantic-ui-react'
 
+import InfoGame from '../InfoGame'
+
 export default function TabGame({ game }) {
 
   const panes = [
@@ -7,7 +9,7 @@ export default function TabGame({ game }) {
       menuItem: "Informações",
       render: () => (
         <Tab.Pane>
-          <h1>Informações Completas</h1>
+          <InfoGame game={game} />
         </Tab.Pane>
       )
     }
