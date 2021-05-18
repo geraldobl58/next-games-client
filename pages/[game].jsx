@@ -7,6 +7,7 @@ import BasicLayout from '../layouts/BasicLayout'
 import { getGameByUrlApi } from '../api/game'
 
 import HeaderGame from '../components/Game/HeaderGame'
+import TabGame from '../components/Game/TabGame'
 
 export default function Game() {
   const [game, setGame] = useState(null)
@@ -26,7 +27,7 @@ export default function Game() {
   return (
     <BasicLayout className="game">
       <HeaderGame game={game} />
-      <p>Tabs information</p>
+     <TabGame game={game} />
     </BasicLayout>
   )
 }
