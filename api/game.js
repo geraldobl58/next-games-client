@@ -3,7 +3,7 @@ import { BASE_URL } from '../utils/constatnts'
 export async function getLastGameApi(limit) {
   try {
     const limitItems = `_limit=${limit}`
-    const sortItem = '_sort=createAt:desc'
+    const sortItem = '_sort=createdAt:desc'
     
     const url = `${BASE_URL}/games?${limitItems}&${sortItem}`
     const response = await fetch(url)
