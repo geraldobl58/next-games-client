@@ -1,4 +1,5 @@
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player/lazy'
+import CarrouselScreenshots from '../CarrouselScreenshots'
 
 export default function InfoGame({ game }) {
   return (
@@ -8,6 +9,7 @@ export default function InfoGame({ game }) {
         url={game.video}
         controls={true}
       />
+      <CarrouselScreenshots title={game.title} screenshots={game.screenshots} />
     </div>
   )
 }
