@@ -16,3 +16,21 @@ export async function getLastGameApi(limit) {
     return null
   }
 }
+
+export async function getGamesPlatformApi(platform, limit, start) {
+  try {
+    const limitItems = `_limit=${limit}`
+    const sortItems = `_sort=createdAt:desc`
+    const startItems = `_start=${start}`
+
+    const url = `${BASE_URL}/games?platform.url=${platform}&${limitItems}&${sortItems}&${startItems}`
+    const response = await fetch(url)
+    const result = await response.json()
+
+    return result
+  
+  }catch(err) {
+    console.log(err)
+    return null
+  }
+}
