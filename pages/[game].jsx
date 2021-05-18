@@ -6,6 +6,8 @@ import BasicLayout from '../layouts/BasicLayout'
 
 import { getGameByUrlApi } from '../api/game'
 
+import HeaderGame from '../components/Game/HeaderGame'
+
 export default function Game() {
   const [game, setGame] = useState(null)
   const { query } = useRouter()
@@ -17,9 +19,14 @@ export default function Game() {
     })()
   }, [query])
 
+  if (!game) {
+    return null
+  }
+
   return (
     <BasicLayout className="game">
-      <h2>{query.game}</h2>
+      <HeaderGame game={game} />
+      <p>Tabs information</p>
     </BasicLayout>
   )
 }

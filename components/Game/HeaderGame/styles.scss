@@ -1,0 +1,10 @@
+.header-game {
+
+  img {
+    border: 5px solid $primary;
+  }
+
+  &.ui.grid {
+    margin: 0;
+  }
+}
