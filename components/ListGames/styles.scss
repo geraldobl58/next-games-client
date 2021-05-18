@@ -48,8 +48,16 @@
           color: $font-light;
           font-size: 14px;
           font-weight: bold;
-          padding: 18px;
+          padding: 10px;
           background: $background-dark;
+          text-align: center;
+
+          &__discount {
+            text-decoration: line-through;
+            font-size: 10px;
+            width: 100%;
+            display: block;
+          }
         }
       }
     }

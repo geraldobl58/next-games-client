@@ -7,4 +7,73 @@
   &.ui.grid {
     margin: 0;
   }
+
+  &__title {
+    position: relative;
+    background: $background-dark-absolute;
+    padding: 10px;
+    color: $font-light;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+
+    i.icon {
+      position: absolute;
+      height: 100%;
+      top: 0;
+      right: 9px;
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      opacity: 1 !important;
+
+      &.like {
+        color: $primary;
+      }
+    }
+  }
+
+  &__summary {
+    font-size: 14px;
+    padding: 20px 0;
+    background: $background-light;
+  }
+
+  &__buy {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 15px 20px;
+
+    margin-top: 15px;
+
+    color: $font-light;
+    background: $background-dark-absolute;
+
+    &-price {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-btn.ui.button {
+      position: relative;
+      width: 200px;
+
+      font-size: 18px;
+
+      padding: 20px 0;
+
+      left: -20px;
+
+      transition: filter 0.2s;
+
+      color: $font-light !important;
+      background: $primary !important;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+  }
 }
