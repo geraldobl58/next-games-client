@@ -8,13 +8,25 @@ import { size } from 'lodash'
 import BasicLayout from '../../layouts/BasicLayout'
 import ListGames from '../../components/ListGames'
 
-import { getGamesPlatformApi } from '../../api/game'
+import { getGamesPlatformApi, getTotalGamesPlatformApi } from '../../api/game'
 
-const limitPerPage = 2
+const limitPerPage = 20
 
 export default function Platform() {
   const [games, setGames] = useState(null)
+  const [totalGames, setTotalGames] = useState(null)
   const { query } = useRouter()
+
+  
+  const getStartItem = () => {
+    const currentPage = parseInt(query.page)
+    
+    if (!query.page || currentPage === 1) {
+      return 0
+    } else {
+      return currentPage * limitPerPage - limitPerPage
+    }
+  }
 
   useEffect(() => {
     (async () => {
@@ -22,6 +34,13 @@ export default function Platform() {
         const response = await getGamesPlatformApi(query.platform, limitPerPage, 0)
         setGames(response)
       }
+    })()
+  }, [query])
+
+  useEffect(() => {
+    (async () => {
+      const response = await getTotalGamesPlatformApi(query.platform)
+      setTotalGames(response)
     })()
   }, [query])
 
