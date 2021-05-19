@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import AuthContext from '../context/AuthContext'
+import CartContext from '../context/CartContext'
 import { setToken, getToken, removeToken }  from '../api/token'
 
 export default function MyApp({ Component, pageProps }) {
@@ -56,24 +57,37 @@ export default function MyApp({ Component, pageProps }) {
     [auth]
   )
 
+  const cartData = useMemo(
+    () => ({
+      productCart: 0,
+      addProductCart: () => null,
+      getProductCart: () => null,
+      removeProductCart: () => null,
+      removeAllProductCart: () => null
+    }),
+    []
+  )
+
   if (auth === undefined) {
     return null
   }
 
   return (
     <AuthContext.Provider value={authData}>
-      <Component {...pageProps} />
-      <ToastContainer 
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar
-        newestOnTop
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable
-        pauseOnHover
-      />
+      <CartContext.Provider value={cartData}>
+        <Component {...pageProps} />
+        <ToastContainer 
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover
+        />
+      </CartContext.Provider>
     </AuthContext.Provider>
   )
 }
