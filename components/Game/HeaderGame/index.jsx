@@ -67,7 +67,7 @@ function Info({ game: { id, title, summary, price, discount } }) {
   const formatNumberPriceDiscount = () => {
     return new Intl.NumberFormat('pt-BR', {
       style: 'currency', currency: 'BRL'
-    }).format(price - Math.floor(price * discount) / 100)
+    }).format((price - Math.floor(price * discount) / 100).toFixed(2))
   }
 
   return (
