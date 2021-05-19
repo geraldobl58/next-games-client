@@ -8,7 +8,7 @@ import { size } from 'lodash'
 
 import useAuth from '../../../hooks/useAuth'
 
-import { isFavoriteApi, addFavoriteApi } from '../../../api/favorite'
+import { isFavoriteApi, addFavoriteApi, deleteFavoriteApi } from '../../../api/favorite'
 
 export default function HeaderGame({ game }) {
   const { poster, title } = game
@@ -51,8 +51,11 @@ function Info({ game: { id, title, summary, price, discount } }) {
     }
   }
 
-  const deleteFavorite = () => {
-    console.log('Remove')
+  const deleteFavorite = async () => {
+    if (auth) {
+      await deleteFavoriteApi(auth.idUser, id, logout)
+      setReloadFavorite(true)
+    }
   }
 
   const formatNumberPrice = () => {
