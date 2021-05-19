@@ -33,7 +33,7 @@ function Info({ game: { id, title, summary, price, discount } }) {
 
   useEffect(() => {
     (async () => {
-      const response = await isFavoriteApi(auth.idUser, id, logout) 
+      const response = await isFavoriteApi(auth?.idUser, id, logout) 
       
       if (size(response) > 0) {
         setIsFavorite(true)
