@@ -2,7 +2,13 @@ import { useState, useEffect } from 'react'
 
 import { Grid, Image, Icon, Button } from 'semantic-ui-react'
 
+import classNames from 'classnames'
+
 import { size } from 'lodash'
+
+import useAuth from '../../../hooks/useAuth'
+
+import { isFavoriteApi, addFavoriteApi } from '../../../api/favorite'
 
 export default function HeaderGame({ game }) {
   const { poster, title } = game
@@ -19,7 +25,35 @@ export default function HeaderGame({ game }) {
   )
 }
 
-function Info({ game: { title, summary, price, discount } }) {
+function Info({ game: { id, title, summary, price, discount } }) {
+  const [isFavorite, setIsFavorite] = useState(false)
+  const [reloadFavorite, setReloadFavorite] = useState(false)
+  
+  const { auth, logout } = useAuth()
+
+  useEffect(() => {
+    (async () => {
+      const response = await isFavoriteApi(auth.idUser, id, logout) 
+      
+      if (size(response) > 0) {
+        setIsFavorite(true)
+      } else {
+        setIsFavorite(false)
+      }
+    })()
+    setReloadFavorite(false)
+  }, [reloadFavorite])
+
+  const addFavorite = async () => {
+    if (auth) {
+      await addFavoriteApi(auth.idUser, id, logout)
+      setReloadFavorite(true)
+    }
+  }
+
+  const deleteFavorite = () => {
+    console.log('Remove')
+  }
 
   const formatNumberPrice = () => {
     return new Intl.NumberFormat('pt-BR', 
@@ -37,7 +71,12 @@ function Info({ game: { title, summary, price, discount } }) {
     <>  
       <div className="header-game__title">
       {title}
-        <Icon name="heart outline" link />
+        <Icon name={isFavorite ? 'heart' : 'heart outline'} 
+          className={classNames({
+            like: isFavorite
+          })} link 
+          onClick={isFavorite ? deleteFavorite : addFavorite}
+        />
       </div>
       <div 
         className="header-game__summary" 
