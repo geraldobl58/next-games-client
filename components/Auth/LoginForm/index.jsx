@@ -20,7 +20,7 @@ export default function LoginForm({ showRegisterForm, onCloseModal }) {
       setLoading(true)
       const response = await loginApi(formData)
       if (response?.jwt) {
-        toast.success('Parabéns: Login realizado com sucesso!')
+        toast.success('Login realizado com sucesso!')
         login(response.jwt)
         onCloseModal();
       } else {

@@ -22,7 +22,7 @@ export default function ChangeEmailForm({ user, logout, setReloadUser }) {
         toast.error('Whoops: Houve um erro ao atualizar')
       } else {
         setReloadUser(true)
-        toast.success('Parabéns: Dados atualizados com sucesso!')
+        toast.success('Dados atualizados com sucesso!')
         formik.handleReset()
       }
       setLoading(false)

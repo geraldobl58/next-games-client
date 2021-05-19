@@ -16,7 +16,7 @@ export default function RegisterForm({ showLoginForm }) {
       setLoading(true)
         const response = await registerApi(formData)
         if (response?.jwt) {
-          toast.success('Parabéns: Usuário cadastrado com sucesso!')
+          toast.success('Usuário cadastrado com sucesso!')
           showLoginForm()
         } else {
           toast.error('Whoops: Houve um erro ao cadastrar o usuário!')

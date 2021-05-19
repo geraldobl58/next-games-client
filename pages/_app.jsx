@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from 'react'
-import { ToastContainer } from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
 import jwtDecode from 'jwt-decode'
 import { useRouter } from 'next/router'
 import '../styles/global.scss'
@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick-theme.css"
 import AuthContext from '../context/AuthContext'
 import CartContext from '../context/CartContext'
 import { setToken, getToken, removeToken }  from '../api/token'
+import { getProductsCart, addProductCart } from '../api/cart'
 
 export default function MyApp({ Component, pageProps }) {
   const [auth, setAuth] = useState(undefined)
@@ -46,6 +47,16 @@ export default function MyApp({ Component, pageProps }) {
       router.push('/')
     }
   }
+
+  const addProduct = (product) => {
+    const token = getToken()
+
+    if (token) {
+      addProductCart(product)
+    } else {
+      toast.warning('Você precisa estar logado')
+    }
+  }
   
   const authData = useMemo(
     () => ({
@@ -60,8 +71,8 @@ export default function MyApp({ Component, pageProps }) {
   const cartData = useMemo(
     () => ({
       productCart: 0,
-      addProductCart: () => null,
-      getProductCart: () => null,
+      addProductCart: (product) => addProduct(product),
+      getProductCart: getProductsCart,
       removeProductCart: () => null,
       removeAllProductCart: () => null
     }),
