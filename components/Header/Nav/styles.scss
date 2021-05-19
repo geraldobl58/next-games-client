@@ -22,6 +22,15 @@
         color: $primary;
       }
 
+      .floating.label {
+        position: absolute;
+        background: $primary !important;
+        top: 12px;
+        left: 30px;
+        font-size: 10px;
+        color: $font-dark;
+      }
+
       .item {
         color: $font-light;
         text-transform: uppercase;
