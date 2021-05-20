@@ -5,6 +5,7 @@ import BasicLayout from '../layouts/BasicLayout'
 import { getGameByUrlApi } from '../api/game'
 
 import useCart from '../hooks/useCart'
+import SummaryCart from '../components/Cart/SummaryCart'
 
 export default function Cart() {
   const { getProductCart } = useCart()
@@ -39,7 +40,7 @@ function FullCart({ products }) {
 
   return (
     <BasicLayout className="empty-cart">
-      <h2>Carrinho</h2>
+      <SummaryCart products={productsData} />
     </BasicLayout>
   )
 }
