@@ -6,8 +6,10 @@ import { forEach, map } from 'lodash'
 
 import useCart from '../../../hooks/useCart'
 
-export default function SummaryCart({ products }) {
+export default function SummaryCart({ products, setReloadCart, reloadCart }) {
   const [totalPrice, setTotalPrice] = useState(0)
+
+  const { removeProductCart } = useCart()
 
   useEffect(() => {
     let price = 0
@@ -15,7 +17,12 @@ export default function SummaryCart({ products }) {
       price += product.price - Math.floor(product.price * product.discount) / 100
     })
     setTotalPrice(price)
-  }, [])
+  }, [reloadCart, products])
+
+  const removeProduct = (product) => {
+    removeProductCart(product)
+    setReloadCart(true)
+  }
 
   const formatNumerTotalPrice = () => {
     return new Intl.NumberFormat('pt-BR', 
@@ -59,7 +66,7 @@ export default function SummaryCart({ products }) {
                     <Icon 
                       name="close" 
                       link 
-                      onClick={() => console.log('Excluir')} 
+                      onClick={() => removeProduct(product.url)} 
                     />
                     <Image src={product.poster.url} alt={product.title} />
                     {product.title}

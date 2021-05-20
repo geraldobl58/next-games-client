@@ -13,7 +13,8 @@ import { setToken, getToken, removeToken }  from '../api/token'
 import { 
   getProductsCart, 
   addProductCart, 
-  countProductsCart 
+  countProductsCart, 
+  removeProductCart
 } from '../api/cart'
 
 export default function MyApp({ Component, pageProps }) {
@@ -69,6 +70,11 @@ export default function MyApp({ Component, pageProps }) {
       toast.warning('Você precisa estar logado')
     }
   }
+
+  const removeProduct = (product) => {
+    removeProductCart(product)
+    setReloadCart(true)
+  }
   
   const authData = useMemo(
     () => ({
@@ -85,7 +91,7 @@ export default function MyApp({ Component, pageProps }) {
       productCart: totalProductsCart,
       addProductCart: (product) => addProduct(product),
       getProductCart: getProductsCart,
-      removeProductCart: () => null,
+      removeProductCart: (product) => removeProduct(product),
       removeAllProductCart: () => null
     }),
     [totalProductsCart]
