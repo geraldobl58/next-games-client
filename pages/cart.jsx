@@ -6,6 +6,7 @@ import { getGameByUrlApi } from '../api/game'
 
 import useCart from '../hooks/useCart'
 import SummaryCart from '../components/Cart/SummaryCart'
+import AddressShipping from '../components/AddressShipping'
 
 export default function Cart() {
   const { getProductCart } = useCart()
@@ -26,6 +27,7 @@ function EmptyCart() {
 function FullCart({ products }) {
   const [productsData, setProductsData] = useState(null)
   const [reloadCart, setReloadCart] = useState(false)
+  const [addresssFullCart, setAddresssFullCart] = useState(null)
 
   useEffect(() => {
     (async () => {
@@ -47,6 +49,7 @@ function FullCart({ products }) {
         setReloadCart={setReloadCart} 
         reloadCart={reloadCart}
       />
+      <AddressShipping setAddresssFullCart={setAddresssFullCart} />
     </BasicLayout>
   )
 }
