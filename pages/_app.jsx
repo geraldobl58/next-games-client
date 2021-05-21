@@ -14,7 +14,8 @@ import {
   getProductsCart, 
   addProductCart, 
   countProductsCart, 
-  removeProductCart
+  removeProductCart,
+  removeAllProductsCart
 } from '../api/cart'
 
 export default function MyApp({ Component, pageProps }) {
@@ -92,7 +93,7 @@ export default function MyApp({ Component, pageProps }) {
       addProductCart: (product) => addProduct(product),
       getProductCart: getProductsCart,
       removeProductCart: (product) => removeProduct(product),
-      removeAllProductCart: () => null
+      removeAllProductCart: removeAllProductsCart
     }),
     [totalProductsCart]
   )
