@@ -19,6 +19,12 @@ export default function Order({ order }) {
     addressShipping 
 } = order
 
+  const formatNumberPriceDiscount = () => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency', currency: 'BRL'
+    }).format(totalPayment)
+  }
+
   return (
     <>
       <div className="order">
@@ -30,7 +36,7 @@ export default function Order({ order }) {
             </Link>
             <div className="order__info-data-summary">
               <h2>{title}</h2>
-              <p>{totalPayment}</p>
+              <p>{formatNumberPriceDiscount()}</p>
             </div>
             <div className="order__other">
               <p className="order__other-date">
