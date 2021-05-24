@@ -1,6 +1,7 @@
 import { Container } from 'semantic-ui-react'
 import classNames from 'classnames'
 import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 
 export default function BasicLayout({ children, className }) {
   return (
@@ -11,6 +12,7 @@ export default function BasicLayout({ children, className }) {
       <Container className="content">
         {children}
       </Container>
+      <Footer />
     </Container>
   )
 }
