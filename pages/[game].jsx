@@ -8,6 +8,7 @@ import { getGameByUrlApi } from '../api/game'
 
 import HeaderGame from '../components/Game/HeaderGame'
 import TabGame from '../components/Game/TabGame'
+import Seo from '../components/Seo'
 
 export default function Game() {
   const [game, setGame] = useState(null)
@@ -26,6 +27,9 @@ export default function Game() {
 
   return (
     <BasicLayout className="game">
+      <Seo 
+        title={game.title}
+      />
       <HeaderGame game={game} />
      <TabGame game={game} />
     </BasicLayout>

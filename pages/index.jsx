@@ -9,6 +9,8 @@ import BasicLayout from "../layouts/BasicLayout"
 import { getLastGameApi } from '../api/game'
 import ListGames from '../components/ListGames'
 
+import Seo from '../components/Seo'
+
 export default function Home() {
   const [games, setGames] = useState(null)
 
@@ -26,6 +28,10 @@ export default function Home() {
 
   return (
     <BasicLayout className="homepage">
+      <Seo 
+        title='Next Games'
+        description='Este e-commerce é somente um exemplo de estudos, nenhuma compra realizada será atendida.' 
+      />
       {!games && <Loader active />}
       {games && size(games) === 0 && (
         <div>
